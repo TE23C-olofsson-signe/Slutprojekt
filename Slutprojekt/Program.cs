@@ -21,7 +21,9 @@ static void fightning(string weapon,string characterName,string bruteName,int we
     while(bruteHp>0)
     {
         Console.WriteLine($"\n-----==== Slå {bruteName}====----");
-        
+        Console.WriteLine($"{characterName}:{weapon}:{weaponHp} {bruteName}:{bruteHp}\n"); 
+
+        int weaponDamage=weaponHp; 
     }
 }
 Console.ReadLine(); 
