@@ -61,7 +61,7 @@ static void Red()
     // Vilken skurk man slåss mot
     Console.WriteLine("Beronde på vilket vapen du valde är det en annan skurk"); 
     
-    int skurkHp = 600;
+    int skurkHp = 1000;
     string skurkname=""; 
     int YourvapenHp=0;  
     
@@ -78,13 +78,11 @@ static void Red()
     }
     else if (vapenname=="Formelbok")
     {
-        YourvapenHp=90;
+        YourvapenHp=100;
         skurkname="Uliana"; 
     }
 
     fightning(vapenname,"Red",skurkname,YourvapenHp,skurkHp);
-
-
 
 }
 
@@ -100,7 +98,35 @@ static void Prompt()
 
 static void uppgradesRed()
 {
-    int 
+    int kr= 600;
+
+    Console.WriteLine("1.Uppgradera vapnet HP till gånger 5 200kr");
+    Console.WriteLine("2.Uppgradera vapnet HP till gånger 2 100kr");
+    Console.WriteLine("3.Uppgradera vapnet HP till gånger 3 90 kr");
+
+    string vilkenuppgradering=""; 
+    while (vilkenuppgradering !="1" && vilkenuppgradering !="2" && vilkenuppgradering !="3" )
+    {
+        vilkenuppgradering=Console.ReadLine(); 
+    }
+    
+    int priceperuppgradering=0; 
+
+    if (vilkenuppgradering=="1")
+    {
+        priceperuppgradering=200; 
+    }
+    else if (vilkenuppgradering=="2")
+    {
+        priceperuppgradering=100; 
+    }
+    else if (vilkenuppgradering=="3")
+    {
+        priceperuppgradering=90; 
+    }
+
+    
+    
 } 
 
 static void fightning(string weapon, string characterName, string bruteName, int weaponHp, int bruteHp)
