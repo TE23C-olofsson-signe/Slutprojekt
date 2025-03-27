@@ -13,11 +13,11 @@ Prompt();
 
 while (!done)
 {
-    charactername= Console.ReadLine(); 
+    charactername = Console.ReadLine();
     if (character.Contains(charactername))
     {
-        Console.WriteLine($"nu är du {charactername}"); 
-        done=true; 
+        Console.WriteLine($"nu är du {charactername}");
+        done = true;
     }
     else
     {
@@ -25,66 +25,107 @@ while (!done)
     }
 }
 
-if (charactername=="Red")
+if (charactername == "Red")
 {
-    Red(); 
+    Red();
 }
 
 static void Red()
 {
+    int kr = 1000;
     // Spawn punkt 
-    Console.WriteLine("Du spawnar vid Merlin Academy"); 
+    Console.WriteLine("Du spawnar vid Merlin Academy");
     Console.WriteLine("Du börjar gå tills du möter Bridget hon säger att du måste välja mellan 3 vapen");
 
-    List<string> vapen= ["Svärd","Pilbåge och pilar","Formelbok"];
+    List<string> vapen = ["Svärd", "Pilbåge och pilar", "Formelbok"];
 
     foreach (var item in vapen)
     {
-        Console.WriteLine(item); 
+        Console.WriteLine(item);
     }
 
-    Prompt(); 
+    Prompt();
 
-    string vapenname=""; 
-    bool flamingo= false; 
+    string vapenname = "";
+    bool flamingo = false;
 
     while (!flamingo)
     {
-        vapenname=Console.ReadLine(); 
+        vapenname = Console.ReadLine();
         if (vapen.Contains(vapenname))
         {
-            Console.WriteLine($"Du valde {vapenname}"); 
-            flamingo= true; 
+            Console.WriteLine($"Du valde {vapenname}");
+            flamingo = true;
+        }
+        else
+        {
+            Console.WriteLine("Skriv ett vapen från listan"); 
         }
     }
 
     // Vilken skurk man slåss mot
-    Console.WriteLine("Beronde på vilket vapen du valde är det en annan skurk"); 
-    
+    Console.WriteLine("Beronde på vilket vapen du valde är det en annan skurk");
+
     int skurkHp = 1000;
-    string skurkname=""; 
-    int YourvapenHp=0;  
+    string skurkname = "";
+    int YourvapenHp = 0;
+
+    if (vapenname == "Svärd")
+    {
+        YourvapenHp = 40;
+        skurkname = "Queen of hearts";
+    }
+    else if (vapenname == "Pilbåge och pilar")
+    {
+        YourvapenHp = 70;
+        skurkname = "Hook";
+    }
+    else if (vapenname == "Formelbok")
+    {
+        YourvapenHp = 100;
+        skurkname = "Uliana";
+    }
+
+    fightning(vapenname, "Red", skurkname, YourvapenHp, skurkHp);
     
+    Console.WriteLine("Du klarade fighten nu kan du köpa HPuppgraderningar till ditt vapen."); 
+    (kr, YourvapenHp) = uppgradesRed(kr, YourvapenHp);
 
-    if (vapenname=="Svärd")
+    Console.WriteLine("Du har gjort ditt köp av vapenhp uppgradering du börjar gå till du kommer till en vägkorsning du kan gå åt "); 
+    List<string> direktion = ["Vänster","Framåt","Höger"]; 
+
+    foreach (var item in direktion)
     {
-        YourvapenHp=40; 
-        skurkname="Queen of hearts"; 
-    }
-    else if (vapenname=="Pilbåge och pilar")
-    {
-        YourvapenHp=70; 
-        skurkname="Hook"; 
-    }
-    else if (vapenname=="Formelbok")
-    {
-        YourvapenHp=100;
-        skurkname="Uliana"; 
+        Console.WriteLine(item); 
     }
 
-    fightning(vapenname,"Red",skurkname,YourvapenHp,skurkHp);
+    string väljadirektion="" ;
+    bool heart= false; 
 
-}
+    while (!heart)
+    {
+        väljadirektion=Console.ReadLine();
+
+        if (direktion.Contains(väljadirektion))
+        {
+            Console.WriteLine($"Du valde att gå{väljadirektion}");
+            heart=true; 
+        }
+        else
+        {
+            Console.WriteLine("Skriv ett direktion från listan"); 
+        }
+    }
+
+    int skurkHp2=1500;
+    int YourvapenHp2=0; 
+    
+    if (väljadirektion=="Vänster")
+    {
+        
+    }
+
+} 
 
 static void Chloe()
 {
@@ -96,42 +137,45 @@ static void Prompt()
     Console.Write("> ");
 }
 
-static void uppgradesRed()
+static (int, int) uppgradesRed(int kr, int vapenHP)
 {
-    int kr= 600;
 
     Console.WriteLine("1.Uppgradera vapnet HP till gånger 5 200kr");
     Console.WriteLine("2.Uppgradera vapnet HP till gånger 2 100kr");
     Console.WriteLine("3.Uppgradera vapnet HP till gånger 3 90 kr");
 
-    string vilkenuppgradering=""; 
-    while (vilkenuppgradering !="1" && vilkenuppgradering !="2" && vilkenuppgradering !="3" )
+    Prompt(); 
+    string vilkenuppgradering = "";
+    while (vilkenuppgradering != "1" && vilkenuppgradering != "2" && vilkenuppgradering != "3")
     {
-        vilkenuppgradering=Console.ReadLine(); 
-    }
-    
-    int priceperuppgradering=0; 
-
-    if (vilkenuppgradering=="1")
-    {
-        priceperuppgradering=200; 
-    }
-    else if (vilkenuppgradering=="2")
-    {
-        priceperuppgradering=100; 
-    }
-    else if (vilkenuppgradering=="3")
-    {
-        priceperuppgradering=90; 
+        vilkenuppgradering = Console.ReadLine();
     }
 
-    
-    
-} 
+    int priceperuppgradering = 0;
+
+    if (vilkenuppgradering == "1")
+    {
+        priceperuppgradering = 200;
+        vapenHP *= 5;
+    }
+    else if (vilkenuppgradering == "2")
+    {
+        priceperuppgradering = 100;
+    }
+    else if (vilkenuppgradering == "3")
+    {
+        priceperuppgradering = 90;
+    }
+
+    kr -= priceperuppgradering;
+
+
+    return (kr, vapenHP);
+}
 
 static void fightning(string weapon, string characterName, string bruteName, int weaponHp, int bruteHp)
 {
-    Console.WriteLine($"{characterName} attackerar{bruteName} med {weapon}");
+    Console.WriteLine($"{characterName} attackerar med sitt {weapon} battles {bruteName} ");
 
     while (bruteHp > 0)
     {
@@ -139,7 +183,7 @@ static void fightning(string weapon, string characterName, string bruteName, int
         Console.WriteLine($"{characterName}:{weapon}:{weaponHp} {bruteName}:{bruteHp}\n");
 
         int weaponDamage = weaponHp;
-        bruteHp = -weaponDamage;
+        bruteHp -= weaponDamage;
         bruteHp = Math.Max(0, bruteHp);
         Console.WriteLine($"{weapon} gör{weaponDamage} på {bruteName}");
         Console.ReadKey();
@@ -147,18 +191,18 @@ static void fightning(string weapon, string characterName, string bruteName, int
     Console.WriteLine($"Yay du slog {bruteName}");
 }
 
-static void rescuefight(string weapon, string characterName, string recsuename, string bruteName, int weaponHp2, int bruteHp2)
+static void rescuefight(string weapon, string characterName, string recsuename, string bruteName, int weaponHp, int bruteHp)
 {
-        Console.WriteLine($"{characterName} attackerar{bruteName} med {weapon}");
+    Console.WriteLine($"{characterName} attackerar{bruteName} med {weapon}");
 
-    while (bruteHp2 > 0)
+    while (bruteHp > 0)
     {
         Console.WriteLine($"\n-----==== Rädda {recsuename}====----");
-        Console.WriteLine($"{characterName}:{weapon}:{weaponHp2} {bruteName}:{bruteHp2}\n");
+        Console.WriteLine($"{characterName}:{weapon}:{weaponHp} {bruteName}:{bruteHp}\n");
 
-        int weaponDamage = weaponHp2;
-        bruteHp2 = -weaponDamage;
-        bruteHp2 = Math.Max(0, bruteHp2);
+        int weaponDamage = weaponHp;
+        bruteHp -= weaponDamage;
+        bruteHp = Math.Max(0, bruteHp);
         Console.WriteLine($"{weapon} gör{weaponDamage} på {bruteName}");
         Console.ReadKey();
     }
