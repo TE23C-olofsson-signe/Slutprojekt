@@ -9,10 +9,10 @@ foreach (var item in character)
     Console.WriteLine(item);
 }
 
-Prompt();
 
 while (!done)
 {
+    Prompt();
     charactername = Console.ReadLine();
     if (character.Contains(charactername))
     {
@@ -44,13 +44,13 @@ static void Red()
         Console.WriteLine(item);
     }
 
-    Prompt();
 
     string vapenname = "";
     bool flamingo = false;
 
     while (!flamingo)
     {
+        Prompt();
         vapenname = Console.ReadLine();
         if (vapen.Contains(vapenname))
         {
@@ -104,6 +104,7 @@ static void Red()
 
     while (!heart)
     {
+        Prompt();
         väljadirektion=Console.ReadLine();
 
         if (direktion.Contains(väljadirektion))
@@ -112,44 +113,51 @@ static void Red()
             heart=true; 
         }
         else
+
         {
             Console.WriteLine("Skriv ett direktion från listan"); 
         }
     }
 
-    int skurkHp2=1500;
-    int YourvapenHp2=0; 
+    Console.WriteLine("Beronde på vilket håll du valde möter du samma skurk eller en annan och deras HP har ökat med 500"); 
+
+    int skurkHp2=1500; 
     
     if (väljadirektion=="Vänster")
     {
-        
+        vapenname= "Svärd"; 
+        skurkname= "Queen of hearts"; 
+    }
+    else if (väljadirektion=="Framåt")
+    {
+        vapenname="Pilbåge och pilar";
+        skurkname="Hook"; 
+    }
+    else if(väljadirektion=="Höger"){
+        vapenname="Formelbok"; 
+        skurkname="Uliana"; 
     }
 
+    fightning(vapenname,"Red",skurkname,YourvapenHp,skurkHp2);
 } 
 
 static void Chloe()
 {
 
 }
-
-static void Prompt()
-{
-    Console.Write("> ");
-}
-
 static (int, int) uppgradesRed(int kr, int vapenHP)
 {
 
-    Console.WriteLine("1.Uppgradera vapnet HP till gånger 5 200kr");
-    Console.WriteLine("2.Uppgradera vapnet HP till gånger 2 100kr");
-    Console.WriteLine("3.Uppgradera vapnet HP till gånger 3 90 kr");
+    Console.WriteLine("1.Uppgradera vapnet HP till gånger (5) 200kr");
+    Console.WriteLine("2.Uppgradera vapnet HP till gånger (2) 100kr");
+    Console.WriteLine("3.Uppgradera vapnet HP till gånger (3) 90 kr");
 
     Prompt(); 
     string vilkenuppgradering = "";
     while (vilkenuppgradering != "1" && vilkenuppgradering != "2" && vilkenuppgradering != "3")
     {
         vilkenuppgradering = Console.ReadLine();
-    }
+    
 
     int priceperuppgradering = 0;
 
@@ -161,17 +169,26 @@ static (int, int) uppgradesRed(int kr, int vapenHP)
     else if (vilkenuppgradering == "2")
     {
         priceperuppgradering = 100;
+        vapenHP *= 2; 
     }
     else if (vilkenuppgradering == "3")
     {
         priceperuppgradering = 90;
+        vapenHP *= 3;  
     }
 
     kr -= priceperuppgradering;
-
-
+}
+     
+     
     return (kr, vapenHP);
 }
+
+static void Prompt()
+{
+    Console.Write("> ");
+}
+
 
 static void fightning(string weapon, string characterName, string bruteName, int weaponHp, int bruteHp)
 {
