@@ -88,20 +88,21 @@ static void Red()
 
     fightning(vapenname, "Red", skurkname, YourvapenHp, skurkHp);
     
-    if (true)
+    bool evilspell=false;
+    if (!evilspell)
     {
         vapenname="Svärd"; 
         YourvapenHp=40; 
     }
-    else if (true)
+    else if (!evilspell)
     {
         vapenname="Pilbåge och pilar"; 
         YourvapenHp=70; 
     }
-    else if (YourvapenHp==100)
+    else if (!evilspell)
     {
         vapenname="Formelbok"; 
-
+        YourvapenHp=100;
     }
     
     Console.WriteLine("Du klarade fighten nu kan du köpa HPuppgraderningar till ditt vapen."); 
