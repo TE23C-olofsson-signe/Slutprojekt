@@ -89,6 +89,24 @@ static void Red()
     fightning(vapenname, "Red", skurkname, YourvapenHp, skurkHp);
     Console.WriteLine("Du klarade fighten nu kan du köpa HPuppgraderningar till ditt vapen."); 
     
+    bool merlin=false; 
+
+    if (!merlin)
+    {
+        vapenname="Svärd";
+        YourvapenHp=40; 
+    }
+    if (!merlin)
+    {
+        vapenname="Pilbåge och pilar";
+        YourvapenHp=70; 
+    }
+    if (!merlin)
+    {
+        vapenname="Formelbok";
+        YourvapenHp=100; 
+    }
+
     (kr, YourvapenHp) = uppgradesRed(kr, YourvapenHp);
 
     Console.WriteLine("Du har gjort ditt köp av vapenhp uppgradering du börjar gå till du kommer till en vägkorsning du kan gå åt "); 
