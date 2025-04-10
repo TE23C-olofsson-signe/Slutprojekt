@@ -310,6 +310,55 @@ static void Chloe()
         }
     }
 
+    string villainName=""; 
+    int villainHp=1500;
+    int YourweaponHp=0; 
+
+    if(weaponName=="Kort")
+    {
+        villainName="Malificent"; 
+        YourweaponHp=50; 
+    } 
+    else if (weaponName=="Klocka")
+    {
+        villainName="Morgie";
+        YourweaponHp=90; 
+    }
+    else if (weaponName=="Svärd")
+    {
+        villainName="Queen of hearts";
+        YourweaponHp=100; 
+    }
+
+    fightning(weaponName,"Chloe",villainName,YourweaponHp,villainHp); 
+
+    int coins=1000; 
+
+    while (coins>0)
+    {
+        Console.WriteLine($"Du har {coins} kronor kvar"); 
+
+        Console.WriteLine("Vilken  vapenhp uppgradering vill du köpa"); 
+       
+        Console.WriteLine("1. vapnets Hp gånger 5(250kr) ");
+        Console.WriteLine("2. vapnets Hp gånger 3(100kr) ");
+        Console.WriteLine("3. vapnets Hp gånger 2(200kr) ");
+
+        string vilkenuppgradering=""; 
+        while (vilkenuppgradering !="1"&& vilkenuppgradering!="2"&&vilkenuppgradering!="3")
+        {
+            vilkenuppgradering=Console.ReadLine(); 
+        }
+
+        int priceperuppgradering=0; 
+
+        if (vilkenuppgradering=="1")
+        {
+            priceperuppgradering=250; 
+        }
+
+    }
+
 }
 
 
