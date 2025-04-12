@@ -356,6 +356,13 @@ static void Chloe()
         {
             priceperuppgradering=250; 
         }
+        else if (vilkenuppgradering=="2"){
+            priceperuppgradering=100; 
+        }
+        else if (vilkenuppgradering=="3")
+        {
+            priceperuppgradering=200; 
+        }
 
     }
 
