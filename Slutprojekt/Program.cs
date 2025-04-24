@@ -88,29 +88,8 @@ static void Red()
 
     fightning(vapenname, "Red", skurkname, YourvapenHp, skurkHp);
     Console.WriteLine("Du klarade fighten nu kan du köpa HPuppgraderningar till ditt vapen."); 
-    
-    bool merlin=false; 
-
-    if (!merlin)
-    {
-        vapenname="Trollstav";
-        YourvapenHp=40; 
-        merlin=true;
-    }
-    if (!merlin)
-    {
-        vapenname="Pilbåge och pilar";
-        YourvapenHp=70; 
-        merlin=true; 
-    }
-    if (!merlin)
-    {
-        vapenname="Formelbok";
-        YourvapenHp=100;
-        
-    }
-
-    (kr, YourvapenHp,vapenname) = uppgradesRed(kr, YourvapenHp,vapenname);
+   
+    (kr, YourvapenHp) = uppgradesRed(kr, YourvapenHp);
 
     Console.WriteLine("Du har gjort ditt köp av vapenhp uppgradering du börjar gå till du kommer till en vägkorsning du kan gå åt "); 
     List<string> direktion = ["Vänster","Framåt","Höger"]; 
@@ -161,7 +140,7 @@ static void Red()
 
     fightning(vapenname,"Red",skurkname,YourvapenHp,skurkHp2);
     Console.WriteLine("Du klarade fighten nu kan du köpa HPuppgraderningar till ditt vapen."); 
-    (kr, YourvapenHp,vapenname) = uppgradesRed(kr,YourvapenHp,vapenname); 
+    (kr, YourvapenHp) = uppgradesRed(kr,YourvapenHp); 
 
     Console.WriteLine("Du har gjort ditt köp av hp uppgraderingar"); 
     Console.WriteLine("Du fortsätter och gå tills du kommer fram till en mur med 3 portar som ligger åt "); 
@@ -213,7 +192,7 @@ static void Red()
     fightning(vapenname,"Red",skurkname,YourvapenHp,skurkHp3);
     Console.WriteLine("Du klarade fighten nu kan du köpa HPuppgraderningar till ditt vapen."); 
 
-    (kr, YourvapenHp,vapenname) = uppgradesRed(kr, YourvapenHp,vapenname);
+    (kr, YourvapenHp) = uppgradesRed(kr, YourvapenHp);
 
     Console.WriteLine("Du har gjort ditt köp av hp uppgraderingar"); 
     Console.WriteLine("Du fortsätter och gå tills du kommer fram till en väg med 3 dörrar"); 
@@ -330,12 +309,13 @@ static void Chloe()
         YourweaponHp=100; 
     }
 
-    fightning(weaponName,"Chloe",villainName,YourweaponHp,villainHp); 
+    fightning(weaponName,"Chloe",villainName,YourweaponHp,villainHp);
 
     int coins=1000; 
 
     while (coins>0)
     {
+        
         Console.WriteLine($"Du har {coins} kronor kvar"); 
 
         Console.WriteLine("Vilken  vapenhp uppgradering vill du köpa"); 
@@ -344,32 +324,95 @@ static void Chloe()
         Console.WriteLine("2. vapnets Hp gånger 3(100kr) ");
         Console.WriteLine("3. vapnets Hp gånger 2(200kr) ");
 
-        string vilkenuppgradering=""; 
-        while (vilkenuppgradering !="1"&& vilkenuppgradering!="2"&&vilkenuppgradering!="3")
+        string vilkenupgrade=""; 
+        while (vilkenupgrade !="1"&& vilkenupgrade!="2"&&vilkenupgrade!="3")
         {
-            vilkenuppgradering=Console.ReadLine(); 
+            Prompt();
+            vilkenupgrade=Console.ReadLine(); 
         }
 
-        int priceperuppgradering=0; 
+        int priceperupgrade=0; 
+         
 
-        if (vilkenuppgradering=="1")
+        if (vilkenupgrade=="1")
         {
-            priceperuppgradering=250; 
+            priceperupgrade=250;
+          
         }
-        else if (vilkenuppgradering=="2"){
-            priceperuppgradering=100; 
+        else if (vilkenupgrade=="2"){
+            priceperupgrade=100; 
         }
-        else if (vilkenuppgradering=="3")
+        else if (vilkenupgrade=="3")
         {
-            priceperuppgradering=200; 
+            priceperupgrade=200; 
         }
+
+        Console.WriteLine("Hur många vill du köpa");
+
+       int howmany=0; 
+
+       while(howmany==0)
+       {
+        string antal=Console.ReadLine(); 
+        bool vase =int.TryParse(antal,out howmany); 
+        
+        if (vase==false)
+        {
+            Console.WriteLine("Du måste skriva en siffra"); 
+        }
+       }
+
+       int finalcost= priceperupgrade * howmany; 
+
+       if (finalcost<=coins)
+       {
+        Console.WriteLine("Ja det går bra. "); 
+        coins -= finalcost; 
+       }
+       else{
+        Console.WriteLine("Nej du har för lite pengar"); 
+       }
+       
+       if (vilkenupgrade == "1")
+       {
+        YourweaponHp *= 5 * howmany;     
+       }
+       if (vilkenupgrade == "2")
+       {
+         YourweaponHp *= 3 * howmany;      
+      }
+       
+       if (vilkenupgrade == "3")
+       {
+       YourweaponHp *= 2 * howmany; 
+       }
 
     }
+
+    Console.WriteLine("Nu har du uppgraderat ditt vapenHp"); 
+
+    Console.WriteLine("Du börjar gå tills du kommer till en korsning du kan gå "); 
+
+    List<string>path=["Vänster","Framåt","Höger"];
+
+    foreach (var item in path)
+    {
+        Console.WriteLine(item); 
+    }
+
+    string choosepath=""; 
+    bool waterfountain=false;
+
+    while (!waterfountain)
+    {
+        choosepath=Console.ReadLine(); 
+        Prompt(); 
+    } 
 
 }
 
 
-static (int, int,string) uppgradesRed(int kr, int vapenHP,string vapen)
+static (int, int) uppgradesRed(int kr, int vapenHP)
 {
 
     Console.WriteLine("1.Uppgradera vapnet HP till gånger (5) 200kr");
@@ -388,61 +431,26 @@ static (int, int,string) uppgradesRed(int kr, int vapenHP,string vapen)
     if (vilkenuppgradering == "1")
     {
         priceperuppgradering = 200;
-      if (vapen=="Trollstav")
-      {
+     
         vapenHP *= 5;    
-      }
-    else  if (vapen=="Pilbåge och pilar")
-      {
-        vapenHP *= 5;    
-      }
-     else if (vapen=="Formelbok")
-      {
-        vapenHP *= 5;    
-      }
-       
     }
     else if (vilkenuppgradering == "2")
     {
         priceperuppgradering = 100;
-       if (vapen=="Trollstav")
-       {
-        vapenHP *= 2;      
-       }
-      else if (vapen=="Pilbåge och pilar")
-       {
-        vapenHP *= 2;      
-       }
-      else if (vapen=="Formelbok")
-       {
-        vapenHP *= 2;      
-       }
-        
+       
+        vapenHP *= 2;          
     }
     else if (vilkenuppgradering == "3")
     {
         priceperuppgradering = 90;
-        
-        if(vapen=="Trollstav")
-        {
-            vapenHP *= 3; 
-        }    
-       else if(vapen=="Pilbåge och pilar")
-        {
-            vapenHP *= 3; 
-        }    
-       else if(vapen=="Formelbok")
-        {
-            vapenHP *= 3; 
-        }    
-        
+        vapenHP *= 3; 
     }
 
     kr -= priceperuppgradering;
 }
      
      
-    return (kr, vapenHP,vapen);
+    return (kr, vapenHP);
 }
 
 static void Prompt()
