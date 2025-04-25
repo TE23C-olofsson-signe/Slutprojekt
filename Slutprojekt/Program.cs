@@ -290,7 +290,7 @@ static void Chloe()
     }
 
     string villainName=""; 
-    int villainHp=1500;
+    int villainHp=2000;
     int YourweaponHp=0; 
 
     if(weaponName=="Kort")
@@ -310,7 +310,8 @@ static void Chloe()
     }
 
     fightning(weaponName,"Chloe",villainName,YourweaponHp,villainHp);
-
+    Console.WriteLine("Du vann nu kan du välja att uppgradera ditt vapenhp"); 
+   
     int coins=1000; 
 
     while (coins>0)
@@ -407,7 +408,110 @@ static void Chloe()
     {
         choosepath=Console.ReadLine(); 
         Prompt(); 
+        if (path.Contains(choosepath))
+        {
+            Console.WriteLine($"Du valde {choosepath} "); 
+            waterfountain=true; 
+        }
+        else
+        {
+            Console.WriteLine("Skriv ett väg från listan");
+        }
     } 
+    Console.WriteLine("Du får olika skurkar för varje väg och skurkenshp har ökat med +1000 (för varje fight)");
+
+    int villainHp2=3000;
+
+    if (choosepath=="Vänster")
+    {
+        weaponName="Kort"; 
+        villainName="Malificent";
+    }
+    else if (choosepath=="Framåt")
+    {
+        weaponName="Klocka"; 
+        villainName="Morgie"; 
+    }
+    else if (choosepath=="Höger")
+    {
+        weaponName="Svärd";
+        villainName="Queen of hearts"; 
+    }
+
+    fightning(weaponName,"Chloe",villainName,YourweaponHp,villainHp2);
+
+    Console.WriteLine("Du börjar gå tills du kommer till en mur med tre portar"); 
+    
+    List<string>Gate=["Vänster","Mitten","Höger",];
+
+    foreach (var item in Gate)
+    {
+        Console.WriteLine(item);
+    }
+
+    string chooseGate=""; 
+    bool school=false; 
+
+    while(!school)
+    {
+        chooseGate=Console.ReadLine(); 
+        Prompt();
+        
+        if (Gate.Contains(chooseGate))
+        {
+            Console.WriteLine($"Du valde {chooseGate}porten"); 
+            school=true;
+        }
+        else
+        {
+            Console.WriteLine("Välj en port "); 
+        }
+    }
+
+    int villainHp3=4000;
+
+    if (chooseGate=="Vänster")
+    {
+        weaponName="Kort";
+        villainName="Malificent"; 
+    }
+    else if (chooseGate=="Mitten")
+    {
+        weaponName="Klocka";
+        villainName="Morgie";
+    }
+    else if (chooseGate=="Höger")
+    {
+        weaponName="Svärd";
+        villainName="Queen of hearts"; 
+    }
+    fightning(weaponName,"Chloe",villainName,YourweaponHp,villainHp3);
+
+    Console.WriteLine("Du börjar gå tills du kommer till ett rum med tre dörrar"); 
+
+    List<string>Door=["Vänster","Mitten","Höger"]; 
+    foreach (var item in Door)
+    {
+        Console.WriteLine(item);
+    }
+
+    string chooseDoor=""; 
+    bool Merlin=false; 
+
+    while (!Merlin)
+    {
+        chooseDoor=Console.ReadLine();
+        Prompt();
+
+        if (Door.Contains(chooseDoor))
+        {
+          Console.WriteLine($"Du valde att gå igenom{chooseDoor}");    
+        }
+        else
+        {
+            Console.WriteLine("Välj en dörr "); 
+        }
+    }
 
 }
 
