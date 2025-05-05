@@ -459,7 +459,7 @@ static void Chloe()
         
         if (Gate.Contains(chooseGate))
         {
-            Console.WriteLine($"Du valde {chooseGate}porten"); 
+            Console.WriteLine($"Du valde {chooseGate}"); 
             school=true;
         }
         else
@@ -505,13 +505,42 @@ static void Chloe()
 
         if (Door.Contains(chooseDoor))
         {
-          Console.WriteLine($"Du valde att gå igenom{chooseDoor}");    
+          Console.WriteLine($"Du valde att gå igenom {chooseDoor} ");    
         }
         else
         {
             Console.WriteLine("Välj en dörr "); 
         }
     }
+
+    Console.WriteLine("Du kommer få rädda en person som står nära dig"); 
+
+    int villainHp4=5000; 
+    string savename=""; 
+
+    if (chooseDoor=="Höger")
+    {
+        weaponName="Kort";
+        villainName="Malificent"; 
+        savename="Red"; 
+        Console.WriteLine($"när {villainName}fick tillbaka sin kraft tog hon{savename} och nu måste du rädda henne ");
+    }
+    else if (chooseDoor=="Mitten")
+    {
+        weaponName="Klocka"; 
+        villainName="Morgie"; 
+        savename="Ella"; 
+        Console.WriteLine($"när {villainName}fick tillbaka sin kraft tog hon{savename} och nu måste du rädda henne ");
+    }
+    else if (chooseDoor=="Vänster")
+    {
+        weaponName="Svärd"; 
+        villainName="Queen of hearts"; 
+        savename="Cinderella"; 
+        Console.WriteLine($"när {villainName}fick tillbaka sin kraft tog hon{savename} och nu måste du rädda henne ");
+    }
+    
+    rescuefight(weaponName,"Chloe",savename,villainName,YourweaponHp,villainHp4);
 
 }
 
