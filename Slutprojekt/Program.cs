@@ -505,7 +505,8 @@ static void Chloe()
 
         if (Door.Contains(chooseDoor))
         {
-          Console.WriteLine($"Du valde att gå igenom {chooseDoor} ");    
+          Console.WriteLine($"Du valde {chooseDoor} ");
+          Merlin=true;     
         }
         else
         {
